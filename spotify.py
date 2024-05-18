@@ -3,8 +3,8 @@ from spotipy import Spotify
 from spotipy.oauth2 import SpotifyOAuth
 import random
 
-CLIENT_ID = ''
-CLIENT_SECRET = ''
+CLIENT_ID = '70e397a870904fd680bdc835d261eb20'
+CLIENT_SECRET = '3744f451901042928eb87666bbecbcf8'
 REDIRECT_URI = 'http://localhost:8501/'
 
 # Set the scope to access user's top artists and tracks
@@ -59,10 +59,9 @@ def profile_tab():
         user_data = sp.current_user()
         
         if user_data:
-            st.write(user_data)
-            st.write("User Profile:")
-            st.write(f"Display Name: {user_data['display_name']}")
-            st.write(f"Country: {user_data['country']}")
+            st.markdown("## User Profile:")
+            st.write(f"### Display Name: {user_data['display_name']}")
+            st.write(f"### Country: {user_data['country']}")
         else:
             st.write("Failed to fetch user profile data.")
     else:
@@ -101,8 +100,19 @@ def main():
                         tracks = sp.artist_top_tracks(artist['id'])
                         for track in tracks['tracks']:
                             st.write(f"- {track['name']}")
+                            st.write("Song Preview:")
+                            audio_url = track['preview_url']
+                            if audio_url:
+                                st.audio(audio_url, format='audio/mp3', start_time=0)
+                            else:
+                                st.write("No preview available for this track.")
                 else:
                     st.write("No recommended artists found.")
+        else:
+            auth_url = auth_manager.get_authorize_url()
+            if st.button("Login"):
+                st.query_params.auth = True
+                st.write(f"Please go to the following URL to authorize: [Login with Spotify]({auth_url})")
     elif choice == "Profile":
         profile_tab()
     else:
