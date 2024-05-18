@@ -5,19 +5,31 @@
 
 
 
-# Project Name
-Long Description about project. This project do that. This project is awesome...
+# RcordiX
+RcordiX is a music recommendation app, that relies on Spotify's api.
+Users can login with their Spotify Account and get Artist and Track recommendations!
+They can preview the tracks and are free to add them to their playlist!
+
 ## Team members
 1. [Pranav M](https://github.com/trulyPranav)
 2. [Abhiram A R](https://github.com/AbhiramAnanthu)
+
 ## Link to product walkthrough
 [link to video](Link Here)
+
 ## How it Works ?
 1. Explaining the working of project
 2. Embed video of project demo
+
 ## Libraries used
-Streamlit - Version
+Streamlit - 1.34.0
+Spotipy - 2.23.0
 ## How to configure
-Instructions for setting up project
+``` 
+pip install -r requirements.txt
+```
+
 ## How to Run
-Instructions for running
+```
+streamlit run app.py
+```
