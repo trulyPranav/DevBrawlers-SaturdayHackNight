@@ -19,10 +19,15 @@ They can preview the tracks and are free to add them to their playlist!
 
 ## How it Works ?
 1. Explaining the working of project
-2. Embed video of project demo
+
+- RcordiX works by the user logging in through their Spotify Account.
+- Then they can acces their profile and get personalized recommendations of Artists and their Tracks!
+- Users can also preview the music then and there!
+- Users can also add music to their playlists, from the app, thereby reducing the hassle(Feature not Implemented).
 
 ## Libraries used
 Streamlit - 1.34.0
+<br>
 Spotipy - 2.23.0
 ## How to configure
 ``` 
