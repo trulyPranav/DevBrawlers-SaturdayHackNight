@@ -5,6 +5,11 @@ import random
 
 home,user,library = st.tabs(["Home","Profile","Library"])
 
+# This ID and SECRET is for development purposes only!
+# For production, there lies a deployment option, which we have not activated
+# So for using this app, I'll have to authorize
+# Kindly contact if needed
+
 CLIENT_ID = '70e397a870904fd680bdc835d261eb20'
 CLIENT_SECRET = '3744f451901042928eb87666bbecbcf8'
 REDIRECT_URI = 'http://localhost:8501/'
@@ -79,7 +84,7 @@ with home:
                                 st.write("No preview available for this track.")
     else:
         auth_url = auth_manager.get_authorize_url()
-        if st.button("Login"):
+        if st.button("Login", key="login_button1"):
             st.query_params.auth = True
             st.write(f"Please go to the following URL to authorize: [Login with Spotify]({auth_url})")
 
@@ -164,6 +169,6 @@ with library:
 
     else:
         auth_url = auth_manager.get_authorize_url()
-        if st.button("Login"):
+        if st.button("Login", key="login_button2"):
             st.query_params.auth = True
             st.write(f"Please go to the following URL to authorize: [Login with Spotify]({auth_url})")
