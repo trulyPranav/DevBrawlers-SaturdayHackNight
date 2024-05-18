@@ -131,17 +131,20 @@ with library:
         playlists = get_user_playlists(sp)
 
         if playlists:
-            for playlist in playlists:
-                playlist_name = playlist['name']
-                playlist_id = playlist['id']
+            # Create a dropdown menu to select playlists
+            selected_playlist_name = st.selectbox("Select Playlist", [playlist['name'] for playlist in playlists])
 
-                st.write(f"### Playlist: {playlist_name}")
+            # Find the selected playlist
+            selected_playlist = next((playlist for playlist in playlists if playlist['name'] == selected_playlist_name), None)
 
-                # Get tracks of the playlist
-                tracks = get_playlist_tracks(sp, playlist_id)
+            if selected_playlist:
+                # Get tracks of the selected playlist
+                playlist_tracks = get_playlist_tracks(sp, selected_playlist['id'])
 
-                if tracks:
-                    for track in tracks:
+                if playlist_tracks:
+                    st.write(f"### Playlist: {selected_playlist_name}")
+
+                    for track in playlist_tracks:
                         track_name = track['track']['name']
                         track_artist = track['track']['artists'][0]['name']
                         track_preview_url = track['track']['preview_url']
@@ -154,6 +157,8 @@ with library:
                             st.write("No preview available for this track.")
                 else:
                     st.write("No tracks available in this playlist.")
+            else:
+                st.write("Please select a playlist.")
         else:
             st.write("No playlists found.")
 
